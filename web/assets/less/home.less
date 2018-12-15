@@ -1,0 +1,101 @@
+@import "vars";
+
+.home-wrapper {
+  .home-overflow {
+    overflow: hidden;
+    position: relative;
+    #home-map {
+      height: 600px;
+    }
+    .place-info {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-color: @wrapper_background_color;
+      padding: 15px;
+      transform: translateX(100%);
+      border: 1px solid @panel_border_color;
+      border-right: 0;
+      transition: transform .5s ease;
+      .place-name {
+        margin-top: 20px;
+      }
+    }
+    .place-info.init {
+      left: 100%;
+      overflow: hidden;
+    }
+    .place-info.show {
+      left: initial;
+      transform: translateX(0);
+    }
+  }
+}
+
+.beer-filter {
+  .dropdown-toggle.bs-placeholder {
+    color: #333;
+  }
+  .dropdown-toggle.bs-placeholder:hover {
+    color: #333;
+  }
+  .dropdown-toggle.bs-placeholder:focus {
+    color: #333;
+  }
+}
+
+.place-available-beers {
+  height: 300px;
+  overflow-y: auto;
+  h4 {
+    margin-top: 20px;
+  }
+}
+
+.map-legend {
+  display: none;
+  background-color: #FFFFFF;
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 10px;
+  margin-top: 15px;
+  margin-left: 15px;
+  font-size: 13px;
+  div:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  img {
+    height: 25px;
+    margin-right: 10px;
+  }
+}
+
+.home-map {
+  .map-legend {
+    display: block;
+  }
+}
+
+@media (max-width: 1220px) {
+  .home-wrapper {
+    .home-overflow {
+      .place-info {
+        .place-info-link {
+          float: none !important;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 328px) {
+  .home-wrapper {
+    .home-overflow {
+      .place-info {
+        .place-info-link {
+          margin-top: 15px;
+        }
+      }
+    }
+  }
+}

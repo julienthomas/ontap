@@ -1,0 +1,6 @@
+{% for flashMessage in app.session.flashbag.get(flashKey) %}
+    <div class="alert alert-{{ flashClass }} alert-dismissable flash-message">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        {{ flashMessage|trans|raw }}
+    </div>
+{% endfor %}

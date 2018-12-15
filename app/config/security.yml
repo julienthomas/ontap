@@ -1,0 +1,38 @@
+security:
+
+    encoders:
+        AppBundle\Entity\Admin:
+            algorithm: bcrypt
+        AppBundle\Entity\User:
+            algorithm: bcrypt
+
+    providers:
+        database:
+            entity:
+                class: AppBundle:Admin
+                property: login
+            entity:
+                class: AppBundle:User
+                property: email
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: ~
+            form_login:
+                login_path: security_login
+                check_path: security_login
+                success_handler: ontap.security.authentication_redirect
+            logout:
+                path:   security_logout
+                target: /
+            remember_me:
+                key: '%secret%'
+
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/user, roles: ROLE_USER }
+        - { path: ^/auth, roles: [ROLE_USER, ROLE_ADMIN] }

@@ -1,0 +1,14 @@
+{% extends 'layout_admin.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">{{ isNew ? 'New brewery'|trans : 'Brewery edition'|trans }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            {% include 'partial/brewery/form.html.twig' %}
+        </div>
+    </div>
+{% endblock body %}

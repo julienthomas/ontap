@@ -1,0 +1,19 @@
+{% set file = isPrototype == false and form.vars.value.file is not empty ? form.vars.value.file : null %}
+<div data-role="picture" class="picture col-lg-6 col-md-6 col-sm-12 col-xs-8">
+    <div class="picture-content col-lg-9 col-md-9 col-sm-9 col-xs-9" data-role="picture-content">
+        <div class="preview" data-role="preview" {% if file is not null %}style="background-image: url('{{ asset(file) }}')"{% endif %}>
+            <i class="fa fa-image picture-none {% if file is not null %}hidden{% endif %}" data-role="picture-none"></i>
+        </div>
+        <input type="file" data-role="picture-input" class="hidden" {% if isPrototype %}disabled{% endif %}>
+        {% set hasError = form.file.vars.errors|length > 0 %}
+        <div class="alert alert-danger alert-dismissable alert-picture-error" data-role="picture-error" {% if hasError == false %}hidden{% endif %}>
+            <button type="button" class="close" data-role="picture-error-close">×</button>
+            {{ 'This file is invalid'|trans }}
+        </div>
+        {{ form_widget(form.file, {'attr': {'data-role': 'place-file', 'disabled': isPrototype}}) }}
+    </div>
+    <div class="picture-action col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        <i class="fa fa-edit picture-edit" data-role="picture-edit"></i>
+        <i class="fa fa-times picture-delete" data-role="picture-delete"></i>
+    </div>
+</div>

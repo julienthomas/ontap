@@ -1,0 +1,14 @@
+{% if isParentForm  %}
+    {% set hasError = false %}
+    {% for child in form.children %}
+        {% if child.vars.errors|length > 0 %}
+            {% set hasError = true %}
+        {% endif %}
+    {% endfor %}
+{% else %}
+    {% set hasError = form.vars.valid == false %}
+{% endif %}
+
+{% if hasError %}
+    <span class="glyphicon glyphicon-exclamation-sign nav-link-error pull-right"></span>
+{% endif %}

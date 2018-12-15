@@ -1,0 +1,52 @@
+{% extends 'layout_admin.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('assets/css/admin/beer_type/import.css') }}" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">{{ 'Beer types import' }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="panel-action">
+                        <button role="button" class="btn btn-success import-button" data-id="import-button"><span class="fa fa-file"></span> {{ 'Open CSV file' }}</button>
+                        <input type="file" name="file" class="import-input" data-id="import-input" accept=".csv" hidden>
+                    </div>
+                    <div class="col-lg-12">
+                        <h3 class="page-header">{{ 'New types'|trans }}</h3>
+                    </div>
+                    <div class="col-lg-12">
+                        <button role="button" class="btn btn-success import-process" data-id="import-process" data-url="{{ path('admin_beer_type_import_process') }}"><span class="glyphicon glyphicon-import"></span> {{ 'Imports types' }}</button>
+                        <div class="alert alert-danger alert-dismissable" data-role='import-error' data-id="import-file-error" hidden>
+                            <button type="button" class="close" data-role="import-error-close">×</button>
+                            {{ 'This file is invalid'|trans }}
+                        </div>
+                        <div class="alert alert-danger alert-dismissable" data-role='import-error' data-id="import-error" hidden>
+                            <button type="button" class="close" data-id="import-error-close">×</button>
+                            {{ 'Error during file import'|trans }}
+                        </div>
+                        <div data-id="types">
+                        </div>
+                        <div class="type" data-id="type-template" hidden>
+                            <span class="label" data-role="type-name">test</span>
+                            <span class="type-error" data-role="type-error"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/js/admin/beer_type/import.js') }}"></script>
+{% endblock javascripts %}

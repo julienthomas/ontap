@@ -1,0 +1,73 @@
+.place-pictures {
+  margin: auto;
+  width: 50%;
+}
+.place-pictures .carousel-inner {
+  height: 20vw;
+}
+.place-pictures .carousel-inner .item {
+  background: no-repeat center;
+  background-size: contain;
+  height: 100%;
+}
+.place-pictures .carousel-control {
+  background-image: none;
+  color: #ffe767;
+}
+.place-pictures .carousel-control:focus,
+.place-pictures .carousel-control:hover {
+  color: #f4d42c;
+}
+.place-pictures .carousel-indicators li {
+  border-color: #f4d42c;
+}
+.place-pictures .carousel-indicators li.active {
+  background-color: #f4d42c;
+}
+.place-description {
+  text-align: center;
+}
+.place-information {
+  margin-right: 50px;
+}
+.place-map {
+  height: 300px;
+  min-width: 400px;
+  width: 400px;
+}
+.schedules .day {
+  width: 10%;
+}
+#page-wrapper {
+  padding-bottom: 40px;
+}
+@media (max-width: 1100px) {
+  .schedules .day {
+    width: 15%;
+  }
+}
+@media (max-width: 500px) {
+  .schedules .day {
+    width: 20%;
+  }
+}
+@media (max-width: 500px) {
+  .schedules .day {
+    width: 100%;
+  }
+}
+@media (max-width: 700px) {
+  .place-map {
+    display: block;
+    width: 100%;
+    min-width: 100%;
+  }
+}
+@media (max-width: 767px) {
+  .place-pictures {
+    width: 70%;
+  }
+  .place-pictures .carousel-inner {
+    height: 30vw;
+  }
+}

@@ -1,0 +1,143 @@
+#place-map {
+  height: 500px;
+}
+.geocode-btn {
+  position: relative;
+}
+.geocode-btn input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: -1;
+}
+.nav-link-error {
+  color: #a94442;
+}
+.form-group.has-error .geocode-btn {
+  border-color: #a94442;
+  color: #a94442;
+}
+.place-locations .place-locations-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+.place-locations .place-locations-list .place-location label {
+  font-weight: 100;
+}
+.place-locations .place-locations-list-template {
+  display: none;
+}
+.pictures .picture {
+  margin-top: 20px;
+}
+.pictures .picture .picture-content {
+  padding: 0;
+  position: relative;
+  border: 1px solid #c0c0c0;
+  height: 18vw;
+}
+.pictures .picture .picture-content .preview {
+  height: 100%;
+  width: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% center;
+}
+.pictures .picture .picture-content .picture-none {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10vw;
+  color: #C0C0C0;
+  display: block;
+  text-align: center;
+}
+.pictures .picture .picture-content .alert-picture-error {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin-bottom: 0;
+}
+.pictures .picture .picture-action i.fa {
+  display: block;
+  font-size: 1.3vw;
+  cursor: pointer;
+}
+.pictures .picture .picture-action .picture-edit {
+  color: #4cae4c;
+  margin-bottom: 20px;
+}
+.pictures .picture .picture-action .picture-delete {
+  color: #d9534f;
+}
+.selected-beers {
+  font-size: 17px;
+}
+.selected-beers .beer-list .page-header {
+  margin-bottom: 5px;
+}
+.selected-beers .beer-list .beer-label {
+  font-size: 13px;
+  display: inline-block;
+}
+.selected-beers .beer-list .beer-label i.fa.fa-times {
+  cursor: pointer;
+}
+.selected-beers .beer-list .beer-label:not(:last-child) {
+  margin-right: 10px;
+}
+.beer-label[data-template='1'] {
+  display: none;
+}
+.beer-list[data-template='1'] {
+  display: none;
+}
+.panel-body {
+  position: relative;
+}
+.panel-body .place-action {
+  position: absolute;
+  right: 30px;
+  z-index: 1;
+}
+.type-new .panel-action,
+.brewery-new .panel-action {
+  display: block;
+  float: none;
+  margin-top: 5px;
+}
+.content-link {
+  cursor: pointer;
+}
+.beer-count {
+  font-size: 12px;
+}
+.beer-select .dropdown-menu.open {
+  min-height: 0 !important;
+}
+.beer-select .dropdown-menu.open .dropdown-menu.inner {
+  min-height: 0 !important;
+}
+.brewery-filter .dropdown-toggle.bs-placeholder {
+  color: #333;
+}
+.brewery-filter .dropdown-toggle.bs-placeholder:hover {
+  color: #333;
+}
+.brewery-filter .dropdown-toggle.bs-placeholder:focus {
+  color: #333;
+}
+.calendar {
+  height: 600px;
+}
+.calendar td.fc-today {
+  background: none;
+}
+.calendar th.fc-day-header {
+  text-transform: capitalize;
+}
+.calendar div.fc-event-container {
+  font-size: 20px;
+  text-align: center;
+}

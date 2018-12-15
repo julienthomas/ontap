@@ -1,0 +1,60 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2\n"
+
+msgid "The address must be filled."
+msgstr "L'adresse doit être renseignée."
+
+msgid "The alcohol degree must be filled."
+msgstr "Le degré d'alcool doit être renseigné."
+
+msgid "The brewery must be filled."
+msgstr "La brasserie doit être renseignée."
+
+msgid "The city must be filled."
+msgstr "La ville doit être renseignée."
+
+msgid "The closure time must be filled."
+msgstr "L'heure de fermeture doit être renseignée."
+
+msgid "The country must be filled."
+msgstr "Le pays doit être renseigné."
+
+msgid "The day must be filled."
+msgstr "Le jour doit être renseigné."
+
+msgid "The name must be filled."
+msgstr "Le nom doit être renseigné."
+
+msgid "The opening time must be filled."
+msgstr "L'heure d'ouverture doit être renseignée."
+
+msgid "The position must be set."
+msgstr "La position doit être renseignée."
+
+msgid "The type must be filled."
+msgstr "Le type doit être renseigné."
+
+msgid "The website url is invalid."
+msgstr "L'url du site web est invalide."
+
+msgid "The zip code must be filled."
+msgstr "Le code postal doit être renseigné."
+
+msgid "This beer already exists."
+msgstr "Cette bière existe déjà."
+
+msgid "This brewery already exists."
+msgstr "Cette brasserie existe déjà."
+
+msgid "This type already exists."
+msgstr "Ce type existe déjà."

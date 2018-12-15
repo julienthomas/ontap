@@ -1,0 +1,13 @@
+.import-input {
+  display: none !important;
+}
+.import-button {
+  margin-bottom: 20px;
+}
+.import-process {
+  display: none;
+  margin-bottom: 20px;
+}
+.type-error {
+  color: #a94442;
+}

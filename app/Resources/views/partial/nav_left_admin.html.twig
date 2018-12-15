@@ -1,0 +1,54 @@
+{% set route = app.request.attributes.get('_route') %}
+
+<li>
+    <a href="{{ path('admin_home') }}" {% if route matches '/^admin_home$/' %}class="active"{% endif %}>
+        <i class="fa fa-dashboard fa-fw"></i> {{ 'Dashboard'|trans }}
+    </a>
+</li>
+<li>
+    <a href="{{ path('admin_place') }}" {% if route matches '/^admin_place/' %}class="active"{% endif %}>
+        <i class="fa fa-shopping-cart fa-fw"></i> {{ 'Places'|trans }}
+    </a>
+</li>
+<li>
+    <a href="#" {% if route matches '/^admin_beer/' and route matches '/^admin_beer_type/' == false %}class="active"{% endif %}>
+        <i class="fa fa-beer fa-fw"></i> {{ 'Beers'|trans }}<span class="fa arrow"></span>
+    </a>
+    <ul class="nav nav-second-level">
+        <li>
+            <a href="{{ path('admin_beer') }}" {% if route matches '/^admin_beer$/' %}class="active"{% endif %}>{{ 'Beers list'|trans }}</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_beer_add') }}" {% if route matches '/^admin_beer_add$/' %}class="active"{% endif %}>{{ 'Add a beer'|trans }}</a>
+        </li>
+    </ul>
+</li>
+<li>
+    <a href="#" {% if route matches '/^admin_beer_type/' %}class="active"{% endif %}>
+        <i class="fa fa-tags fa-fw"></i> {{ 'Beer types'|trans }}<span class="fa arrow"></span>
+    </a>
+    <ul class="nav nav-second-level">
+        <li>
+            <a href="{{ path('admin_beer_type') }}" {% if route matches '/^admin_beer_type$/' %}class="active"{% endif %}>{{ 'Beer types list'|trans }}</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_beer_type_add') }}" {% if route matches '/^admin_beer_type_add$/' %}class="active"{% endif %}>{{ 'Add a beer type'|trans }}</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_beer_type_import') }}" {% if route matches '/^admin_beer_type_import$/' %}class="active"{% endif %}>{{ 'Import beer types'|trans }}</a>
+        </li>
+    </ul>
+</li>
+<li>
+    <a href="#" {% if route matches '/^admin_brewery/' %}class='active'{% endif %}>
+        <i class="fa fa-home fa-fw"></i> {{ 'Brewery'|trans }}<span class="fa arrow"></span>
+    </a>
+    <ul class="nav nav-second-level">
+        <li>
+            <a href="{{ path('admin_brewery') }}" {% if route matches '/^admin_brewery$/' %}class="active"{% endif %}>{{ 'Breweries list'|trans }}</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_brewery_add') }}" {% if route matches '/^admin_brewery_add$/' %}class="active"{% endif %}>{{ 'Add a brewery'|trans }}</a>
+        </li>
+    </ul>
+</li>

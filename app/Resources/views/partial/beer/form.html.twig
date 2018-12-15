@@ -1,0 +1,55 @@
+<div class="panel">
+    <div class="panel-body">
+        {% if isEmbedded is not defined %}
+            {{ form_start(form) }}
+        {% endif %}
+        <div class="col-lg-12">
+            <h3 class="page-header">
+                {% if isEmbedded is not defined %}
+                    {{ 'Information'|trans }}
+                {% else %}
+                    {{ 'Beer information'|trans }}
+                {% endif %}
+                <div class="panel-action">
+                    {% if isEmbedded is not defined %}
+                        <a href="{{ path('admin_beer') }}" class="btn btn-danger"><i class="fa fa-times"></i> {{ 'Cancel'|trans }}</a>
+                        <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> {{ 'Send'|trans }}</button>
+                    {% else %}
+                        <button type="button" data-id="beer-cancel" class="btn btn-danger"><i class="fa fa-times"></i> {{ 'Cancel'|trans }}</button>
+                        <button type="button" data-id="beer-submit" data-url="{{ path('auth_beer_create') }}" class="btn btn-success"><i class="fa fa-check"></i> {{ 'Send'|trans }}</button>
+                    {% endif %}
+                </div>
+            </h3>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-4">
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.alcoholDegree) }}
+                    <div class="form-group">
+                        {{ form_label(form.type) }}
+                        <span class="label-subtext">{{ 'Type not found? You can add a new one by'|trans }} <a class="content-link" data-id="type-new-show">{{ 'clicking here'|trans }}</a></span>
+                        {{ form_widget(form.type, {'attr': {'data-id': 'type-choice'}}) }}
+                    </div>
+                    <div class="form-group embed-panel type-new" data-id="type-new" hidden>
+                        {% include 'partial/beer_type/form.html.twig' with {'form': beerTypeForm, 'isEmbedded': true} %}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.brewery) }}
+                        <span class="label-subtext">{{ 'Brewery not found? You can add a new one by'|trans }} <a class="content-link" data-id="brewery-new-show">{{ 'clicking here'|trans }}</a></span>
+                        {{ form_widget(form.brewery, {'attr': {'data-id': 'brewery-choice'}}) }}
+                    </div>
+                    <div class="form-group embed-panel brewery-new" data-id="brewery-new" hidden>
+                        {% include 'partial/brewery/form.html.twig' with {'form': breweryForm, 'isEmbedded': true} %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if isEmbedded is not defined %}
+            {{ form_end(form) }}
+        {% else %}
+            {{ form_row(form._token) }}
+        {% endif %}
+    </div>
+</div>

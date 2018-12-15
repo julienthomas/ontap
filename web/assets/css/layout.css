@@ -1,0 +1,242 @@
+html,
+body {
+  height: 100%;
+  background-color: #333333;
+}
+.panel {
+  border-color: #c0c0c0;
+}
+.page-header {
+  border-bottom-color: #D4D4D4;
+}
+.validate-disabled {
+  background-color: inherit !important;
+  cursor: inherit !important;
+}
+.panel .page-header {
+  margin-top: 10px;
+}
+.panel .panel-heading .btn {
+  margin-top: -6.5px;
+  padding: 5px 5px;
+  min-width: 80px;
+}
+div.banner {
+  background-color: black;
+}
+div.banner div.container {
+  padding: 0;
+}
+div.banner div.container img {
+  width: 100%;
+}
+#wrapper {
+  height: 100%;
+}
+#wrapper #page-wrapper {
+  background-color: #eff1f2;
+}
+#wrapper #page-wrapper .flash-messages {
+  z-index: 1000;
+  padding-top: 20px;
+  position: absolute;
+  left: 280px;
+  right: 30px;
+}
+#wrapper #page-wrapper .flash-messages .flash-message:last-child {
+  margin-bottom: 0;
+}
+nav.navbar.navbar-default.navbar-static-top {
+  background-color: #333333;
+}
+nav.navbar.navbar-default.navbar-static-top .nav-item {
+  height: 50px;
+  text-align: center;
+  font-weight: bold;
+}
+nav.navbar.navbar-default.navbar-static-top .nav-item a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 14px 0;
+  height: 100%;
+  cursor: pointer;
+}
+nav.navbar.navbar-default.navbar-static-top .nav-item a:hover {
+  background-color: #2b2b2b;
+}
+nav.navbar.navbar-default.navbar-static-top .nav-login {
+  border-right: 1px solid #515151;
+}
+nav.navbar.navbar-default.navbar-static-top .nav-contact {
+  border-right: 1px solid #515151;
+  border-left: 1px solid #515151;
+}
+nav.navbar.navbar-default.navbar-static-top .nav-login a,
+nav.navbar.navbar-default.navbar-static-top .nav-contact a {
+  padding: 14px 15px;
+}
+nav.navbar.navbar-default.navbar-static-top .nav-user {
+  height: 50px;
+  display: block;
+  color: white;
+  font-weight: bold;
+  padding: 14px 10px;
+}
+nav.navbar.navbar-default.navbar-static-top .nav-logo {
+  height: 50px;
+  text-align: center;
+  font-weight: bold;
+  width: 250px;
+}
+nav.navbar.navbar-default.navbar-static-top .nav-logo a {
+  display: block;
+  height: 100%;
+}
+nav.navbar.navbar-default.navbar-static-top .nav-logo a img {
+  margin-top: 0px;
+  height: 50px;
+}
+nav.navbar.navbar-default.navbar-static-top .navbar-default.sidebar {
+  background-color: #333333;
+  margin-top: 0;
+  border-top: 1px solid #515151;
+}
+nav.navbar.navbar-default.navbar-static-top .navbar-default.sidebar ul.nav > li {
+  border-bottom: 1px solid #515151;
+}
+nav.navbar.navbar-default.navbar-static-top .navbar-default.sidebar ul.nav > li > label,
+nav.navbar.navbar-default.navbar-static-top .navbar-default.sidebar ul.nav > li > a {
+  color: white;
+}
+nav.navbar.navbar-default.navbar-static-top .navbar-default.sidebar ul.nav > li > a {
+  height: 50px;
+  padding-top: 15px;
+}
+nav.navbar.navbar-default.navbar-static-top .navbar-default.sidebar ul.nav > li > a.active,
+nav.navbar.navbar-default.navbar-static-top .navbar-default.sidebar ul.nav > li > a:hover,
+nav.navbar.navbar-default.navbar-static-top .navbar-default.sidebar ul.nav > li > a:focus {
+  background-color: #515151;
+}
+nav.navbar.navbar-default.navbar-static-top .navbar-default.sidebar ul.primary-nav {
+  margin-top: 50px;
+}
+div.form-nav div.panel ul.nav {
+  border-bottom: 0;
+}
+div.form-nav div.panel ul.nav li {
+  margin: 0;
+  float: none;
+}
+div.form-nav div.panel ul.nav li a {
+  border: 0;
+  margin: 0;
+  display: block;
+  height: 50px;
+  padding: 15px 15px 10px 15px;
+  font-weight: bold;
+  color: #333333;
+  text-decoration: none;
+}
+div.form-nav div.panel ul.nav li.active a {
+  background-color: #eff1f2;
+}
+div.form-nav div.panel ul.nav li:not(:last-child) {
+  border-bottom: 1px solid #C0C0C0;
+}
+@media (max-width: 767px) {
+  nav.navbar.navbar-default.navbar-static-top .navbar-default.sidebar {
+    border-top: 0;
+  }
+  nav.navbar.navbar-default.navbar-static-top .navbar-default.sidebar .sidebar-nav {
+    border-top: 0;
+  }
+  nav.navbar.navbar-default.navbar-static-top .navbar-default.sidebar .sidebar-nav .primary-nav {
+    border-top: 1px solid #515151;
+    margin: 0;
+  }
+  nav.navbar.navbar-default.navbar-static-top .navbar-default.sidebar .sidebar-nav li:last-child {
+    border-bottom: none;
+  }
+  nav.navbar.navbar-default.navbar-static-top .navbar-default.sidebar .sidebar-nav.navbar-collapse.collapse.in {
+    overflow-y: inherit;
+  }
+  nav.navbar.navbar-default.navbar-static-top .navbar-header {
+    border-bottom: 1px solid #515151;
+  }
+  #page-wrapper {
+    margin-left: 0;
+  }
+  #page-wrapper .loading {
+    left: 0;
+  }
+}
+.panel-body .panel-action {
+  float: right;
+  margin-top: -10px;
+}
+.label-subtext {
+  display: block;
+  white-space: nowrap;
+}
+.form-error-template {
+  display: none;
+}
+.navbar-default .sidebar .bootstrap-select li {
+  border-bottom: none !important;
+}
+.bootstrap-select .dropdown-toggle .filter-option {
+  text-overflow: ellipsis;
+}
+.loading {
+  position: fixed;
+  z-index: 1000;
+  bottom: 0;
+  left: 249px;
+  right: 0;
+  background-color: #333333;
+  height: 50px;
+  text-align: center;
+}
+.loading .loading-img {
+  height: 80%;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+}
+.loading .loading-img.rotate {
+  -webkit-animation: rotating 2s linear infinite;
+  -moz-animation: rotating 2s linear infinite;
+  -ms-animation: rotating 2s linear infinite;
+  -o-animation: rotating 2s linear infinite;
+  animation: rotating 2s linear infinite;
+}
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+  from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

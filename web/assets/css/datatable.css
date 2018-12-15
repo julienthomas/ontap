@@ -1,0 +1,15 @@
+table.dataTable thead .sorting {
+  background: none;
+}
+table.dataTable thead .sorting_asc {
+  background: none;
+}
+table.dataTable thead .sorting_desc {
+  background: none;
+}
+table.dataTable thead .sorting_asc_disabled {
+  background: none;
+}
+table.dataTable thead .sorting_desc_disabled {
+  background: none;
+}

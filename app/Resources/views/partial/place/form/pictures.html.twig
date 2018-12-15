@@ -1,0 +1,22 @@
+<div id="place-pictures" class="tab-pane fade" data-role="place-panel">
+    <div class="col-lg-12">
+        <h3 class="page-header">{{ 'Pictures'|trans }}</h3>
+    </div>
+    <div class="col-lg-12">
+        <div class="alert alert-info">
+            {{ "A valid file must have a .jpg or .png extension and it's size must be inferior or equal to 2mo."|trans }}<br>
+            {{ "You can upload up to 3 images."|trans }}
+        </div>
+        <button type="button" class="btn btn-success" data-id="picture-add" {% if form.children|length >= 3 %}disabled{% endif %}>
+            <i class="fa fa-plus"></i> {{ 'Add a picture'|trans }}
+        </button>
+        <div class="row pictures" data-id="pictures">
+            {% for picture in form %}
+                {% include 'partial/place/form/pictures/template.html.twig' with {'form': picture, 'isPrototype': false} %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-lg-12 hidden" data-id="picture-prototype">
+        {% include 'partial/place/form/pictures/template.html.twig' with {'form': form.vars.prototype, 'isPrototype': true} %}
+    </div>
+</div>

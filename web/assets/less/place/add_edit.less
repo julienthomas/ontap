@@ -1,0 +1,178 @@
+@import "../vars";
+
+#place-map {
+  height: 500px;
+}
+
+.geocode-btn {
+  position: relative;
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: -1;
+  }
+}
+
+.nav-link-error {
+  color: @field_error_color;
+}
+
+.form-group.has-error {
+  .geocode-btn {
+    border-color: @field_error_color;
+    color: @field_error_color;
+  }
+}
+
+.place-locations {
+  .place-locations-list {
+    max-height: 300px;
+    overflow-y: auto;
+    .place-location {
+      label {
+        font-weight: 100;
+      }
+    }
+  }
+  .place-locations-list-template {
+    display: none;
+  }
+}
+
+.pictures {
+  .picture {
+    margin-top: 20px;
+    .picture-content {
+      padding: 0;
+      position: relative;
+      border: 1px solid @panel_border_color;
+      height: 18vw;
+      .preview {
+        height: 100%;
+        width: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 50% center;
+      }
+      .picture-none {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 10vw;
+        color: #C0C0C0;
+        display: block;
+        text-align: center;
+      }
+      .alert-picture-error {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        margin-bottom: 0;
+      }
+    }
+    .picture-action {
+      i.fa {
+        display: block;
+        font-size: 1.3vw;
+        cursor: pointer;
+      }
+      .picture-edit {
+        color: #4cae4c;
+        margin-bottom: 20px;
+      }
+      .picture-delete {
+        color: #d9534f;
+      }
+    }
+  }
+}
+
+.selected-beers {
+  font-size: 17px;
+  .beer-list {
+    .page-header {
+      margin-bottom: 5px;
+    }
+    .beer-label {
+      font-size: 13px;
+      display: inline-block;
+      i.fa.fa-times {
+        cursor: pointer;
+      }
+    }
+    .beer-label:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+
+}
+
+.beer-label[data-template='1'] {
+  display: none;
+}
+
+.beer-list[data-template='1'] {
+  display: none;
+}
+
+.panel-body {
+  position: relative;
+  .place-action {
+    position: absolute;
+    right: 30px;
+    z-index: 1;
+  }
+}
+
+.type-new, .brewery-new {
+  .panel-action {
+    display: block;
+    float: none;
+    margin-top: 5px;
+  }
+}
+
+.content-link {
+  cursor: pointer;
+}
+
+.beer-count {
+  font-size: 12px;
+}
+
+.beer-select {
+  .dropdown-menu.open {
+    min-height: 0 !important;
+    .dropdown-menu.inner {
+      min-height: 0 !important;
+    }
+  }
+}
+
+.brewery-filter {
+  .dropdown-toggle.bs-placeholder {
+    color: #333;
+  }
+  .dropdown-toggle.bs-placeholder:hover {
+    color: #333;
+  }
+  .dropdown-toggle.bs-placeholder:focus {
+    color: #333;
+  }
+}
+
+.calendar {
+  height: 600px;
+  td.fc-today {
+    background: none;
+  }
+  th.fc-day-header {
+    text-transform: capitalize;
+  }
+  div.fc-event-container {
+    font-size: 20px;
+    text-align: center;
+  }
+}

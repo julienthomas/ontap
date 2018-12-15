@@ -1,0 +1,22 @@
+{% set route = app.request.attributes.get('_route') %}
+{% set path  = null %}
+
+{% if route == 'home' %}
+    {% if is_granted(constant('AppBundle\\Entity\\Role::ADMIN')) %}
+        {% set path = path('admin_home') %}
+    {% elseif is_granted(constant('AppBundle\\Entity\\Role::USER'))  %}
+        {% set path = path('user_home') %}
+    {% endif %}
+    {% set text = 'Back to professional space'|trans %}
+{% elseif route == 'place_information' %}
+    {% set path = path('home') %}
+    {% set text = 'Back to map'|trans %}
+{% elseif app.user %}
+    {% set path = path('home') %}
+    {% set text = 'Back to public space'|trans %}
+{% endif %}
+{% if path is not null %}
+    <li>
+        <a href="{{ path }}"><i class="fa fa-arrow-left fa-fw"></i> {{ text }}</a>
+    </li>
+{% endif %}

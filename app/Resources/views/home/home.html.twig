@@ -1,0 +1,76 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('assets/css/home.css') }}" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block nav_left_items %}
+    <li class="sidebar-search">
+        <button type="button" class="btn btn-default" data-id="map-locate"><i class="fa fa-map-marker"></i> {{ 'Locate me'|trans }}</button>
+    </li>
+    <li class="sidebar-search">
+        <label for="beer-filter">{{ 'Search a beer'|trans }}</label>
+        <select id="beer-filter" class="form-control selectpicker beer-filter" data-live-search="true">
+            <option value="" class="filter-default" {% if selectedBeer == null %}selected{% endif %}>{{ 'All beers'|trans }}</option>
+            {% for brewery, beers in beerList %}
+                <optgroup label="{{ brewery }}">
+                    {% for beer in beers %}
+                        <option value="{{ beer.id }}" {% if beer.id == selectedBeer %}selected{% endif %}>{{ beer.name }}</option>
+                    {% endfor %}
+                </optgroup>
+            {% endfor %}
+        </select>
+    </li>
+{% endblock nav_left_items %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">{{ 'Places list'|trans }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 home-wrapper">
+            <div class="home-overflow">
+                <div id="home-map" class="home-map" data-url="{{ path('home_place') }}"></div>
+                <div class="map-legend" data-id="map-legend">
+                    <div>
+                        <img src="{{ asset('assets/img/map/marker.png') }}">{{ 'Ontap place'|trans }}
+                    </div>
+                </div>
+                <div class="place-info init col-lg-4" data-id="place-info">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <button type="button" class="btn btn-danger" data-id="place-info-close"><i class="fa fa-times"></i> {{ 'Close'|trans }}</button>
+                            <a href="#" class="btn btn-default pull-right place-info-link" data-id="place-info-link"><i class="fa fa-search"></i> {{ 'Place information'|trans }}</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h3 class="page-header place-name" data-id="place-name"></h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div data-id="place-address"></div>
+                            <div data-id="place-phone" hidden><i class="fa fa-phone"></i> <span>lol</span></div>
+                            <div data-id="place-email" hidden><i class="fa fa-envelope"></i> <span></span></div>
+                            <div data-id="place-website" hidden><i class="fa fa-globe"></i> <a href="#" target="_blank"></a></div>
+                            <div data-id="place-facebook" hidden><i class="fa fa-facebook-official"></i> <a href="#" target="_blank"></a></div>
+                            <div class="place-available-beers" data-id="place-available-beers">
+                                <h4>{{ 'Available beers'|trans }}</h4>
+                                <div class="place-available-beers-list" data-id="place-available-beers-list"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+
+{% block javascripts %}
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ google_api_key }}"></script>
+    <script src="{{ asset('assets/lib/geolocation-marker/geolocation-marker.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/home.js') }}"></script>
+{% endblock javascripts %}

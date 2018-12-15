@@ -1,0 +1,101 @@
+services:
+    # listeners
+    ontap.listener.ajax_authentication_listener:
+        class: AppBundle\Listener\AjaxAuthenticationListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, method: onCoreException, priority: 1000 }
+
+    # form
+    ontap.form.beer:
+        class: AppBundle\Form\BeerType
+        arguments:
+            - '@security.token_storage'
+        tags:
+            - { name: form.type, alias: ontap_beer_type }
+
+    ontap.form.beer_type:
+        class: AppBundle\Form\BeerTypeType
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+            - '@validator'
+        tags:
+            - { name: form.type, alias: ontap_beer_type_type }
+
+    ontap.form.brewery:
+        class: AppBundle\Form\BreweryType
+        arguments:
+            - '@security.token_storage'
+        tags:
+            - { name: form.type, alias: ontap_brewery_type }
+
+    # security
+    ontap.security.authentication_redirect:
+        class: AppBundle\Security\AuthenticationRedirect
+        arguments:
+            - '@router'
+            - 'admin_home'
+            - 'user_home'
+
+    # services
+    ontap.service.place:
+        class: AppBundle\Service\PlaceService
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+            - '@templating.helper.assets'
+            - '@twig'
+            - '@router'
+            - '%map_marker%'
+
+    ontap.service.beer:
+        class: AppBundle\Service\BeerService
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+            - '@twig'
+
+    ontap.service.beer_type:
+        class: AppBundle\Service\BeerTypeService
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+            - '@twig'
+            - '@translator.default'
+            - '@form.factory'
+            - '@ontap.form.beer_type'
+
+    ontap.service.brewery:
+        class: AppBundle\Service\BreweryService
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+            - '@twig'
+            - '@translator.default'
+            - '@form.factory'
+            - '@ontap.form.brewery'
+
+    ontap.service.admin_dashboard:
+        class: AppBundle\Service\AdminDashboardService
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+
+    ontap.service.token:
+        class: AppBundle\Service\TokenService
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+            - '@ontap.service.mail'
+            - '@templating'
+            - '@router'
+            - '@translator.default'
+            - '%password_token_ttl%'
+
+    ontap.service.mail:
+        class: AppBundle\Service\MailService
+        arguments:
+            - '@mailer'
+            - '@kernel'
+            - '%mail_from%'
+
+    ontap.service.password:
+        class: AppBundle\Service\PasswordService
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+            - '@form.factory'
+            - '@security.encoder_factory'
+            - '@translator.default'

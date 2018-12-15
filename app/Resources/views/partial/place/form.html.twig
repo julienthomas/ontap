@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="row">
+            {{ form_start(form, {'attr': {'data-id': 'place-form', 'data-upload-url': path('admin_place_image_upload')}}) }}
+            <div class="col-lg-3 form-nav">
+                <div class="panel">
+                    <ul class="nav nav-tabs" data-id="place-panels-links">
+                        <li class="active">
+                            <a href="#place-information" data-toggle="tab" aria-expanded="true">
+                                {{ 'Information'|trans }}
+                                {% include 'partial/place/form/nav_errors.html.twig' with {'form': form, 'isParentForm': true} %}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#place-owner" data-toggle="tab" aria-expanded="false">
+                                {{ 'Owner'|trans }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#place-address" data-toggle="tab" aria-expanded="false" data-id="place-address-link">
+                                {{ 'Address'|trans }}
+                                {% include 'partial/place/form/nav_errors.html.twig' with {'form': form.address, 'isParentForm': false} %}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#place-pictures" data-toggle="tab" aria-expanded="false" data-id="place-pictures-link">
+                                {{ 'Pictures'|trans }}
+                                {% include 'partial/place/form/nav_errors.html.twig' with {'form': form.pictures, 'isParentForm': false} %}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#place-schedule" data-toggle="tab" aria-expanded="false" data-id="place-schedule-link">
+                                {{ 'Schedules'|trans }}
+                                {% include 'partial/place/form/nav_errors.html.twig' with {'form': form.schedules, 'isParentForm': false} %}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#place-beers" data-toggle="tab" aria-expanded="false">
+                                {{ 'Beers'|trans }}
+                                {% include 'partial/place/form/nav_errors.html.twig' with {'form': form.beers, 'isParentForm': false} %}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="panel">
+                    <div class="panel-body tab-content">
+                        <div class="place-action">
+                            <a href="{{ cancelUrl }}" class="btn btn-danger"><i class="fa fa-times"></i> {{ 'Cancel'|trans }}</a>
+                            <button type="submit" class="btn btn-success place-submit" data-id="place-submit"><i class="fa fa-check"></i> {{ 'Send'|trans }}</button>
+                        </div>
+                        {% include 'partial/place/form/information.html.twig' %}
+                        {% include 'partial/place/form/owner.html.twig' %}
+                        {% include 'partial/place/form/address.html.twig' with {'form': form.address} %}
+                        {% include 'partial/place/form/pictures.html.twig' with {'form': form.pictures} %}
+                        {% include 'partial/place/form/schedule.html.twig' with {'form': form.schedules} %}
+                        {% include 'partial/place/form/beers.html.twig'  %}
+                    </div>
+                </div>
+            </div>
+            {{ form_row(form._token) }}
+            {{ form_end(form, {'render_rest': false}) }}
+        </div>
+    </div>
+</div>

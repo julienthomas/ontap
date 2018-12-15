@@ -1,0 +1,6 @@
+{% block btns %}
+    <div class="pull-right">
+        <a href="{{ path('admin_place_information', {'id': id}) }}" class="btn btn-default"><i class="fa fa-search"></i> {{ 'See'|trans }}</a>
+        <a href="{{ path('admin_place_edit', {'id': id}) }}" class="btn btn-success"><i class="fa fa-pencil"></i> {{ 'Edit'|trans }}</a>
+    </div>
+{% endblock btns %}

@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block layout_stylesheets %}
+    <link href="{{ asset('assets/css/layout.css') }}" rel="stylesheet">
+    {% block stylesheets %}{% endblock stylesheets %}
+{% endblock layout_stylesheets %}
+
+{% block layout_body %}
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="pull-left nav-logo">
+                    <a href="{{ path('home') }}">
+                        <img src="{{ asset('assets/img/ontap.png') }}" />
+                    </a>
+                </div>
+                {% block current_user %}
+                    {% if app.user %}
+                        <div class="pull-left nav-user">
+                            <span>{{ 'Welcome %s'|trans|format(app.user.userName) }}</span>
+                        </div>
+                    {% endif %}
+                {% endblock current_user %}
+            </div>
+            <div class="clearfix">
+                <div class="pull-right nav-item nav-login">
+                    {% if app.user %}
+                        <a href="{{ path('security_logout') }}">{{ 'Logout'|trans }}</a>
+                    {% else %}
+                        <a href="{{ path('security_login') }}">{{ 'Log in'|trans }}</a>
+                    {% endif %}
+                </div>
+                <div class="pull-right nav-item nav-contact">
+                    <a>{{ 'Contact us'|trans }}</a>
+                </div>
+            </div>
+            {% block nav_left %}
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse collapse" aria-expanded="false">
+                        <ul class="nav in primary-nav" id="side-menu">
+                            {% block nav_left_items %}{% endblock nav_left_items %}
+                            {% include 'partial/nav_switch.html.twig' %}
+                        </ul>
+                    </div>
+                </div>
+            {% endblock nav_left %}
+        </nav>
+        <div id="page-wrapper">
+            {% set flashBag = app.session.flashbag %}
+            {% if flashBag.has('error') or flashBag.has('success') %}
+                <div class="flash-messages">
+                    {% include 'partial/flash_message.html.twig' with {'flashKey': 'error', 'flashClass': 'danger'} %}
+                    {% include 'partial/flash_message.html.twig' with {'flashKey': 'success', 'flashClass': 'success'} %}
+                </div>
+            {% endif %}
+            {% block body %}{% endblock body %}
+            <div class="loading" data-id="loading" data-url="{{ path('security_login') }}" hidden>
+                <img class="loading-img" data-id="loading-img" src="{{ asset('assets/img/beer.png') }}">
+            </div>
+        </div>
+    </div>
+{% endblock layout_body %}
+
+{% block layout_javascripts %}
+    <script type="text/javascript" src="{{ asset('assets/js/layout.js') }}"></script>
+    {% block javascripts %}{% endblock javascripts %}
+{% endblock layout_javascripts %}
