@@ -6,9 +6,17 @@
     </a>
 </li>
 <li>
-    <a href="{{ path('admin_place') }}" {% if route matches '/^admin_place/' %}class="active"{% endif %}>
-        <i class="fa fa-shopping-cart fa-fw"></i> {{ 'Places'|trans }}
+    <a href="#" {% if route matches '/^admin_place/' %}class="active"{% endif %}>
+        <i class="fa fa-shopping-cart fa-fw"></i> {{ 'Places'|trans }}<span class="fa arrow"></span>
     </a>
+    <ul class="nav nav-second-level">
+        <li>
+            <a href="{{ path('admin_place') }}" {% if route matches '/^admin_place$/' %}class="active"{% endif %}>{{ 'Places list'|trans }}</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_place_add') }}" {% if route matches '/^admin_place_add$/' %}class="active"{% endif %}>{{ 'Add a place'|trans }}</a>
+        </li>
+    </ul>
 </li>
 <li>
     <a href="#" {% if route matches '/^admin_beer/' and route matches '/^admin_beer_type/' == false %}class="active"{% endif %}>

@@ -21,7 +21,7 @@ framework:
     #serializer:      { enable_annotations: true }
     templating:
         engines: ['twig']
-        assets_version: 20171126153
+        assets_version: 201812151107
     default_locale:  "%locale%"
     trusted_hosts:   ~
     trusted_proxies: ~
@@ -80,12 +80,3 @@ doctrine:
                     string_functions:
                         like: AppBundle\Doctrine\Functions\Like
         auto_generate_proxy_classes: "%kernel.debug%"
-
-# Swiftmailer Configuration
-swiftmailer:
-    transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
-    spool:     { type: memory }

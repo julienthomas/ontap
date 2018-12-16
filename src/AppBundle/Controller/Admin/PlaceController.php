@@ -62,7 +62,7 @@ class PlaceController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function AddEditAction(Request $request, Place $place = null)
+    public function addEditAction(Request $request, Place $place = null)
     {
         $placeService = $this->get('ontap.service.place');
         $isNew = false;

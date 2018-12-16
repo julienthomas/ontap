@@ -1,14 +1,14 @@
 msgid ""
 msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr_FR\n"
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.2\n"
 
 msgid "- Choose one -"
@@ -17,12 +17,8 @@ msgstr "- Choisissez une valeur -"
 msgid "- Choose one or more -"
 msgstr "- Choisissez une ou plusieurs valeurs -"
 
-msgid ""
-"A valid file must have a .jpg or .png extension and it's size must be "
-"inferior or equal to 2mo."
-msgstr ""
-"Un fichier valide doit avoir une extension .jpg ou .png et sa taille doit "
-"être inférieure ou égale à 2 mo."
+msgid "A valid file must have a .jpg or .png extension and it's size must be inferior or equal to 2mo."
+msgstr "Un fichier valide doit avoir une extension .jpg ou .png et sa taille doit être inférieure ou égale à 2 mo."
 
 msgid "Add"
 msgstr "Ajouter"
@@ -38,6 +34,9 @@ msgstr "Ajouter une brasserie"
 
 msgid "Add a picture"
 msgstr "Ajouter une photo"
+
+msgid "Add a place"
+msgstr "Ajouter un lieu"
 
 msgid "Address"
 msgstr "Adresse"
@@ -118,8 +117,7 @@ msgid "Brewery information"
 msgstr "Informations brasserie"
 
 msgid "Brewery not found? You can add a new one by"
-msgstr ""
-"Vous ne trouvez pas la brasserie? vous pouvez en ajouter une nouvelle en"
+msgstr "Vous ne trouvez pas la brasserie? vous pouvez en ajouter une nouvelle en"
 
 msgid "Brewery successfully added."
 msgstr "Brasserie ajoutée."
@@ -172,12 +170,8 @@ msgstr "Facebook"
 msgid "Filter beers by brewery"
 msgstr "Filtrer les bières par brasserie"
 
-msgid ""
-"Following your request, you can reset your password by clicking on the "
-"following link:"
-msgstr ""
-"Suite à votre demande, vous pouvez réinitialiser votre mot de passe en "
-"cliquant sur le lien suivant:"
+msgid "Following your request, you can reset your password by clicking on the following link:"
+msgstr "Suite à votre demande, vous pouvez réinitialiser votre mot de passe en cliquant sur le lien suivant:"
 
 msgid "Forgotten password"
 msgstr "Mot de passe oublié"
@@ -394,39 +388,3 @@ msgstr "Code postal"
 
 msgid "clicking here"
 msgstr "cliquant ici"
-
-#~ msgid "Add a partner"
-#~ msgstr "Ajouter un partenaire"
-
-#~ msgid "Filling place"
-#~ msgstr "Lieu de remplissage"
-
-#~ msgid "New shop"
-#~ msgstr "Nouvelle boutique"
-
-#~ msgid "Partners"
-#~ msgstr "Partenaires"
-
-#~ msgid "SYNEK partners"
-#~ msgstr "Partenaires SYNEK"
-
-#~ msgid "Shop edition"
-#~ msgstr "Edition de la boutique"
-
-#~ msgid "Shop information"
-#~ msgstr "Informations boutique"
-
-#~ msgid "Shop successfully edited."
-#~ msgstr "Boutique modifiée."
-
-#~ msgid "Shops"
-#~ msgstr "Boutiques"
-
-#~ msgid "Shops list"
-#~ msgstr "Liste des boutiques"
-
-#~ msgid "Synek shop"
-#~ msgstr "Boutique Synek"
-
-#~ msgid "Newly imported shops"
-#~ msgstr "Boutiques récemment importées"

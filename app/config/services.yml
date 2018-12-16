@@ -88,7 +88,6 @@ services:
     ontap.service.mail:
         class: AppBundle\Service\MailService
         arguments:
-            - '@mailer'
             - '@kernel'
             - '%mail_from%'
 
