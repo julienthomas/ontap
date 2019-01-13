@@ -153,11 +153,11 @@ class Place
     private $beers;
 
     /**
-     * @var \AppBundle\Entity\User
+     * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\OneToOne(targetEntity="\AppBundle\Entity\User", mappedBy="place")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserPlace", mappedBy="place")
      */
-    private $user;
+    private $userPlaces;
 
     /**
      * Constructor.
@@ -169,6 +169,7 @@ class Place
         $this->schedules = new \Doctrine\Common\Collections\ArrayCollection();
         $this->events = new \Doctrine\Common\Collections\ArrayCollection();
         $this->beers = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->userPlaces = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -626,13 +627,20 @@ class Place
     }
 
     /**
-     * Get user.
+     * Get owner.
      *
-     * @return \AppBundle\Entity\User
+     * @return \AppBundle\Entity\User|null
      */
-    public function getUser()
+    public function getOwner()
     {
-        return $this->user;
+        /** @var UserPlace $userPlace */
+        foreach ($this->userPlaces as $userPlace) {
+            if ($userPlace->isOwner()) {
+                return $userPlace->getUser();
+            }
+        }
+
+        return null;
     }
 
     /**

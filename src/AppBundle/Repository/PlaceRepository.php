@@ -24,8 +24,8 @@ class PlaceRepository extends EntityRepository
     {
         $qb = $this->getPlacesDatatableListQuery($searchs, $order, $limit, $offset);
         $qb
-            ->leftJoin('place.user', 'user')
-            ->andWhere('user.id IS NULL')
+            ->leftJoin('AppBundle:UserPlace', 'userPlace', 'userPlace.place = place')
+            ->andWhere('userPlace.place IS NULL')
         ;
 
         return DatatableUtil::getQbData($this->_em, $qb, 'place.id', $searchs);
@@ -101,10 +101,9 @@ class PlaceRepository extends EntityRepository
     public function getHomeMapPlaces($beerId)
     {
         $qb = $this->_em->createQueryBuilder()
-            ->select('place, user, address, beers')
+            ->select('place, address, beers')
             ->from('AppBundle:Place', 'place')
             ->innerJoin('place.address', 'address')
-            ->leftJoin('place.user', 'user')
             ->leftJoin('place.beers', 'beers')
             ->leftJoin('beers.brewery', 'brewery')
             ->orderBy('beers.name');
@@ -132,9 +131,8 @@ class PlaceRepository extends EntityRepository
     public function getPlaceInformation($placeId, Language $language = null)
     {
         $qb = $this->_em->createQueryBuilder()
-            ->select('place, user, address, country, country_translations, beers, brewery, pictures, schedules')
+            ->select('place, address, country, country_translations, beers, brewery, pictures, schedules')
             ->from('AppBundle:Place', 'place')
-            ->leftJoin('place.user', 'user')
             ->innerJoin('place.address', 'address')
             ->innerJoin('address.country', 'country')
             ->leftJoin('country.translations', 'country_translations', Expr\Join::WITH, 'country_translations.language = :language')
@@ -163,9 +161,8 @@ class PlaceRepository extends EntityRepository
     public function getNewestPlace()
     {
         $qb = $this->_em->createQueryBuilder()
-            ->select('place, user')
+            ->select('place')
             ->from('AppBundle:Place', 'place')
-            ->leftJoin('place.user', 'user')
             ->orderBy('place.id', 'DESC')
             ->setMaxResults(1)
         ;

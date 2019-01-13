@@ -81,16 +81,6 @@ class User implements AdvancedUserInterface, \Serializable
     private $updatedDate;
 
     /**
-     * @var \AppBundle\Entity\Place
-     *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Place", inversedBy="user")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="place_id", referencedColumnName="id", onDelete="SET NULL")
-     * })
-     */
-    private $place;
-
-    /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Role")
@@ -106,12 +96,20 @@ class User implements AdvancedUserInterface, \Serializable
     private $roles;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserPlace", mappedBy="user")
+     */
+    private $userPlaces;
+
+    /**
      * Constructor.
      */
     public function __construct()
     {
         $this->createdDate = new \DateTime('now', new \DateTimeZone(EntityUtil::DEFAULT_TIMEZONE));
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->userPlaces = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -317,30 +315,6 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get place.
-     *
-     * @return Place
-     */
-    public function getPlace()
-    {
-        return $this->place;
-    }
-
-    /**
-     * Set place.
-     *
-     * @param $place
-     *
-     * @return $this
-     */
-    public function setPlace($place)
-    {
-        $this->place = $place;
-
-        return $this;
-    }
-
-    /**
      * Add role.
      *
      * @param \AppBundle\Entity\Role $role
@@ -362,6 +336,66 @@ class User implements AdvancedUserInterface, \Serializable
     public function removeRole(\AppBundle\Entity\Role $role)
     {
         $this->roles->removeElement($role);
+    }
+
+    /**
+     * @param UserPlace $userPlace
+     *
+     * @return $this
+     */
+    public function addUserPlace(UserPlace $userPlace)
+    {
+        if ($this->hasPlace($userPlace->getPlace())) {
+            $this->userPlaces->add($userPlace);
+        }
+
+        return $this;
+    }
+
+    public function removePlace(Place $place)
+    {
+        /** @var UserPlace $userPlace */
+        foreach ($this->userPlaces as $userPlace) {
+            if ($userPlace->getPlace() === $place) {
+                $this->userPlaces->remove($userPlace);
+
+                return;
+            }
+        }
+    }
+
+    /**
+     * @param Place $place
+     *
+     * @return bool
+     */
+    public function hasPlace(Place $place)
+    {
+        /** @var UserPlace $userPlace */
+        foreach ($this->userPlaces as $userPlace) {
+            if ($userPlace->getPlace() === $place) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param Place $place
+     *
+     * @return bool
+     */
+    public function isPlaceOwner(Place $place)
+    {
+        /** @var UserPlace $userPlace */
+        foreach ($this->userPlaces as $userPlace) {
+            if ($userPlace->getPlace() === $place && $userPlace->isOwner()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
