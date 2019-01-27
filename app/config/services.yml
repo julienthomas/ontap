@@ -34,7 +34,7 @@ services:
         arguments:
             - '@router'
             - 'admin_home'
-            - 'user_home'
+            - 'user_place'
 
     # services
     ontap.service.place:
@@ -44,6 +44,7 @@ services:
             - '@templating.helper.assets'
             - '@twig'
             - '@router'
+            - '@ontap.service.user'
             - '%map_marker%'
 
     ontap.service.beer:
@@ -98,3 +99,14 @@ services:
             - '@form.factory'
             - '@security.encoder_factory'
             - '@translator.default'
+
+    ontap.service.user:
+        class: AppBundle\Service\UserService
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+            - '@templating'
+            - '@router'
+            - '@translator.default'
+            - '@ontap.service.token'
+            - '@ontap.service.mail'
+            - '@ontap.service.password'

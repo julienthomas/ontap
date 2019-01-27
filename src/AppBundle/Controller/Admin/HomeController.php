@@ -12,6 +12,8 @@ class HomeController extends Controller
      */
     public function homeAction()
     {
+        $this->get('ontap.service.user')->findOrCreateUser('julien.thomas0@gmail.com');
+
         $stats = $this->get('ontap.service.admin_dashboard')->getDashboardStats($this->getUser()->getLanguage());
 
         return $this->render('admin/home/home.html.twig', ['stats' => $stats]);

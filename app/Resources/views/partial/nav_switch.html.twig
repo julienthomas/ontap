@@ -5,7 +5,7 @@
     {% if is_granted(constant('AppBundle\\Entity\\Role::ADMIN')) %}
         {% set path = path('admin_home') %}
     {% elseif is_granted(constant('AppBundle\\Entity\\Role::USER'))  %}
-        {% set path = path('user_home') %}
+        {% set path = path('user_place') %}
     {% endif %}
     {% set text = 'Back to professional space'|trans %}
 {% elseif route == 'place_information' %}

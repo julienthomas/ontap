@@ -11,11 +11,13 @@
                                 {% include 'partial/place/form/nav_errors.html.twig' with {'form': form, 'isParentForm': true} %}
                             </a>
                         </li>
-                        <li>
-                            <a href="#place-owner" data-toggle="tab" aria-expanded="false">
-                                {{ 'Owner'|trans }}
-                            </a>
-                        </li>
+                        {% if addOwner %}
+                            <li>
+                                <a href="#place-owner" data-toggle="tab" aria-expanded="false">
+                                    {{ 'Owner'|trans }}
+                                </a>
+                            </li>
+                        {% endif %}
                         <li>
                             <a href="#place-address" data-toggle="tab" aria-expanded="false" data-id="place-address-link">
                                 {{ 'Address'|trans }}

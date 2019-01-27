@@ -14,6 +14,7 @@ use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Security\Core\Encoder\EncoderFactory;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
@@ -76,7 +77,7 @@ class PasswordService extends AbstractService
     /**
      * @return \Symfony\Component\Form\FormInterface
      */
-    public function getResetForm()
+    public function getDefineForm()
     {
         $form = $this->formFactory->createBuilder('form')
             ->add(
@@ -109,18 +110,28 @@ class PasswordService extends AbstractService
         $this->setPassword($plainPassword, $admin, $user);
     }
 
+    public function createSalt()
+    {
+        return hash('sha256', (new \DateTime('now'))->format('YmdHis'));
+    }
+
+    public function createPassword(UserInterface $user, $plainPassword, $salt)
+    {
+        return $this->encoder->getEncoder($user)->encodePassword($plainPassword, $salt);
+    }
+
     /**
      * @param string     $plainPassword
      * @param Admin|null $admin
      * @param User|null  $user
      */
-    public function setPassword($plainPassword, Admin $admin = null, User $user = null)
+    private function setPassword($plainPassword, Admin $admin = null, User $user = null)
     {
         $currentUser = null !== $admin ? $admin : $user;
 
         $this->encoder->getEncoder($currentUser);
-        $salt = hash('sha256', (new \DateTime('now'))->format('YmdHis'));
-        $password = $this->encoder->getEncoder($currentUser)->encodePassword($plainPassword, $salt);
+        $salt = $this->createSalt();
+        $password = $this->createPassword($currentUser, $plainPassword, $salt);
         $currentUser
             ->setPassword($password)
             ->setSalt($salt);

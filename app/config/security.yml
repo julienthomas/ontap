@@ -7,13 +7,13 @@ security:
             algorithm: bcrypt
 
     providers:
-        database:
-            entity:
-                class: AppBundle:Admin
-                property: login
-            entity:
-                class: AppBundle:User
-                property: email
+        chain_provider:
+            chain:
+                providers: [admin, user]
+        admin:
+            entity: { class: AppBundle:Admin, property: login }
+        user:
+            entity: { class: AppBundle:User, property: email }
 
     firewalls:
         dev:

@@ -644,17 +644,18 @@ class Place
     }
 
     /**
-     * Set user.
-     *
-     * @param \AppBundle\Entity\User $user
-     *
-     * @return Place
+     * @param $email
      */
-    public function setUser(\AppBundle\Entity\User $user)
+    public function removeUser($email)
     {
-        $this->user = $user;
+        /** @var UserPlace $userPlace */
+        foreach ($this->userPlaces as $userPlace) {
+            if ($userPlace->getUser()->getEmail() === $email) {
+                $this->userPlaces->remove($userPlace);
 
-        return $this;
+                return;
+            }
+        }
     }
 
     /**

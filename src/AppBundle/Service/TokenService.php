@@ -74,6 +74,46 @@ class TokenService extends AbstractService
             }
         }
 
+        $token = $this->createToken($user, $admin);
+
+        $subject = "[{$this->translator->trans('ONTAP')}] {$this->translator->trans('Reset your password')}";
+        $mailBody = $this->templating->render('mail/password_reset.txt.twig', [
+            'route' => $this->router->generate('password_reset', ['token' => $token->getToken()], true),
+        ]);
+
+        $to = $admin ? $admin->getEmail() : $user->getEmail();
+        $this->mailService->send($subject, $mailBody, $to);
+
+        return true;
+    }
+
+    /**
+     * @param User $user
+     *
+     * @return Token
+     */
+    public function createUserToken(User $user)
+    {
+        return $this->createToken($user);
+    }
+
+    /**
+     * @param Admin $admin
+     *
+     * @return Token
+     */
+    public function createAdminToken(Admin $admin)
+    {
+        return $this->createToken(null, $admin);
+    }
+
+    /**
+     * @param User  $user
+     * @param Admin $admin
+     * @return Token
+     */
+    private function createToken(User $user = null, Admin $admin = null)
+    {
         $token = new Token();
         $now = new \DateTime('now', new \DateTimeZone('UTC'));
         $tokenPrefix = $admin ? $admin->getEmail() : $user->getEmail();
@@ -85,15 +125,7 @@ class TokenService extends AbstractService
             ->setTtl($this->tokenTtl);
         $this->persistAndFlush($token);
 
-        $subject = "[{$this->translator->trans('ONTAP')}] {$this->translator->trans('Reset your password')}";
-        $mailBody = $this->templating->render('mail/password_reset.txt.twig', [
-            'route' => $this->router->generate('password_reset', ['token' => $token->getToken()], true),
-        ]);
-
-        $to = $admin ? $admin->getEmail() : $user->getEmail();
-        $this->mailService->send($subject, $mailBody, $to);
-
-        return true;
+        return $token;
     }
 
     /**

@@ -4,6 +4,7 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\Beer;
 use AppBundle\Entity\Timezone;
+use AppBundle\Entity\UserPlace;
 use AppBundle\Util\DatatableUtil;
 use Doctrine\ORM\EntityManager;
 use AppBundle\Entity\Place;
@@ -35,6 +36,11 @@ class PlaceService extends AbstractService
     private $router;
 
     /**
+     * @var UserService
+     */
+    private $userService;
+
+    /**
      * @var string
      */
     private $marker;
@@ -44,6 +50,7 @@ class PlaceService extends AbstractService
      * @param AssetsHelper      $assetsHelper
      * @param \Twig_Environment $twig
      * @param Router            $router
+     * @param UserService       $userService
      * @param string            $marker
      */
     public function __construct(
@@ -51,12 +58,14 @@ class PlaceService extends AbstractService
         AssetsHelper $assetsHelper,
         \Twig_Environment $twig,
         Router $router,
+        UserService $userService,
         $marker
     ) {
         parent::__construct($manager);
         $this->assetsHelper = $assetsHelper;
         $this->twig = $twig;
         $this->router = $router;
+        $this->userService = $userService;
         $this->marker = $marker;
     }
 
@@ -252,6 +261,34 @@ class PlaceService extends AbstractService
         $this->persistAndFlush($place->getPictures()->toArray());
         $this->persistAndFlush($place->getSchedules()->toArray());
         $this->removeUnused($place);
+    }
+
+    /**
+     * @param Place  $place
+     * @param string $email
+     */
+    public function setPlaceOwner(Place $place, $email)
+    {
+        $owner = $place->getOwner();
+
+        if ($owner && $owner->getEmail() === $email) {
+            return;
+        }
+
+        if ($email) {
+            $user = $this->userService->findOrCreateUser($email);
+            $userPlace = new UserPlace($user, $place);
+            $userPlace->setIsOwner(true);
+            $this->persistAndFlush($userPlace);
+
+//            $oldUserPlace = $this->manager->getRepository(UserPlace::class)->findOneBy([
+//                'user' => $owner,
+//                'place' => $place,
+//            ]);
+//            if ($oldUserPlace) {
+//                $this->removeAndFlush($oldUserPlace);
+//            }
+        }
     }
 
     /**

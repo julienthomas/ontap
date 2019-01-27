@@ -26,13 +26,25 @@ class PlaceType extends AbstractType
     private $placeService;
 
     /**
+     * @var bool
+     */
+    private $addOwner;
+
+    /**
+     * @var bool
+     */
+    private $ownerEmail;
+
+    /**
      * @param Language     $language
      * @param PlaceService $placeService
      */
-    public function __construct(Language $language, PlaceService $placeService)
+    public function __construct(Language $language, PlaceService $placeService, $addOwer = false, $ownerEmail = null)
     {
         $this->language = $language;
         $this->placeService = $placeService;
+        $this->addOwner = $addOwer;
+        $this->ownerEmail = $ownerEmail;
     }
 
     /**
@@ -135,6 +147,19 @@ class PlaceType extends AbstractType
                 ]
             )
         ;
+
+        if ($this->addOwner) {
+            $builder->add(
+                'owner',
+                'email',
+                [
+                    'label' => 'Email',
+                    'required' => false,
+                    'mapped' => false,
+                    'data' => $this->ownerEmail,
+                ]
+            );
+        }
     }
 
     /**

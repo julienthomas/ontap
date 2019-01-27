@@ -71,8 +71,9 @@ class PlaceController extends Controller
             $isNew = true;
         }
 
+        $ownerEmail = $place->getOwner() ? $place->getOwner()->getEmail() : null;
         $basePictures = $placeService->getCurrentPictures($place);
-        $formType = new PlaceType($this->getUser()->getLanguage(), $this->get('ontap.service.place'));
+        $formType = new PlaceType($this->getUser()->getLanguage(), $this->get('ontap.service.place'), true, $ownerEmail);
         $placeForm = $this->createForm($formType, $place);
         $beerForm = $this->createForm($this->get('ontap.form.beer'), new Beer());
         $beerTypeForm = $this->createForm($this->get('ontap.form.beer_type'), new Beer\Type());
@@ -85,6 +86,7 @@ class PlaceController extends Controller
             $flashbag = $this->get('session')->getFlashBag();
             if ($placeForm->isValid()) {
                 $placeService->savePlace($place);
+                $placeService->setPlaceOwner($place, $placeForm->get('owner')->getData());
                 $placeService->deleteUnusedPictures($place, $basePictures);
                 $msg = $isNew ? $translator->trans('Place successfully added.') : $translator->trans('Place successfully edited.');
                 $flashbag->add('success', $msg);
@@ -103,6 +105,7 @@ class PlaceController extends Controller
             'beerForm' => $beerForm->createView(),
             'beerTypeForm' => $beerTypeForm->createView(),
             'breweryForm' => $breweryForm->createView(),
+            'addOwner' => true,
         ]);
     }
 

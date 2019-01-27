@@ -44,6 +44,48 @@ class PasswordController extends Controller
     }
 
     /**
+     * @Route("/reset-password/{token}", name="password_reset", defaults={"isReset" = true})
+     * @Route("/create-password/{token}", name="password_create")
+     *
+     * @param string $token
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function passwordDefineAction(Request $request, $token, $isReset = false)
+    {
+        $passwordService = $this->get('ontap.service.password');
+        $token = $this->get('ontap.service.token')->findToken($token);
+        if (null === $token) {
+            $msg = $this->get('translator')->trans('This link is not valid.');
+            $this->get('session')->getFlashBag()->add('error', $msg);
+
+            return $this->redirectToRoute('home');
+        }
+
+        $form = $passwordService->getDefineForm();
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $translator = $this->get('translator');
+            $flashbag = $this->get('session')->getFlashBag();
+            if ($form->isValid()) {
+                $passwordService->setPasswordFromToken($token, $form->get('password')->getData());
+
+                $msg = $isReset ? $translator->trans('Your password has been changed.') :
+                    $translator->trans('Your password has been created.');
+                $flashbag->add('success',$msg);
+
+                return $this->redirectToRoute('home');
+            }
+            $flashbag->add('error', $translator->trans('Some fields are invalids.'));
+        }
+
+        return $this->render('password_define.html.twig', [
+            'form' => $form->createView(),
+            'isReset' => $isReset,
+        ]);
+    }
+
+    /**
      * @Route("/reset-password/{token}", name="password_reset")
      *
      * @param string $token
@@ -61,7 +103,7 @@ class PasswordController extends Controller
             return $this->redirectToRoute('home');
         }
 
-        $form = $passwordService->getResetForm();
+        $form = $passwordService->getDefineForm();
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             $translator = $this->get('translator');
@@ -75,6 +117,6 @@ class PasswordController extends Controller
             $flashbag->add('error', $translator->trans('Some fields are invalids.'));
         }
 
-        return $this->render('password_reset.html.twig', ['form' => $form->createView()]);
+        return $this->render('password_define.html.twig', ['form' => $form->createView(), 'isReset' => true]);
     }
 }
