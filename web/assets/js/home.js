@@ -4,6 +4,20 @@ var geolocationZoom = 11;
 var geolocMakerInit = false;
 
 $(function(){
+    $(window).bind("load resize", function() {
+        var topOffset = 160;
+        var width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
+        if (width < 768) {
+            topOffset += 50; // 2-row-menu
+        }
+        var height = ((this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height) - 2;
+        height = height - topOffset;
+        if (height < 1) height = 1;
+        if (height > topOffset) {
+            $("#home-map").css("min-height", (height) + "px");
+        }
+    });
+
     map = new google.maps.Map(document.getElementById("home-map"), {
         center: {lat: 46.81676808590648, lng: 2.4233221091003587},
         zoom:   6,

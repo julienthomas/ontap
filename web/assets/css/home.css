@@ -2,9 +2,6 @@
   overflow: hidden;
   position: relative;
 }
-.home-wrapper .home-overflow #home-map {
-  height: 600px;
-}
 .home-wrapper .home-overflow .place-info {
   position: absolute;
   right: 0;
